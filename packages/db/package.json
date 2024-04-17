@@ -3,6 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "author": {"name": "sijumoncy"},
-  "keywords": []
+  "author": {
+    "name": "sijumoncy"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "prisma": "5.12.1"
+  },
+  "dependencies": {
+    "@prisma/client": "5.12.1"
+  },
+  "exports":{
+    "./client" : "./src/index.ts"
+  }
 }
