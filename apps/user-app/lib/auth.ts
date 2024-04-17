@@ -14,7 +14,7 @@ export const authOptions = {
         },
         password: { label: "Password", type: "password" },
       },
-      // TODO: User credentials type from next-aut
+      // TODO: User credentials type from next-auth
       async authorize(credentials: any) {
         // TODO : zod validation, OTP validation here
         const hashedPassword = await hash(credentials.password, 10);
