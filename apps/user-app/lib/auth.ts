@@ -16,6 +16,8 @@ export const authOptions = {
       },
       // TODO: User credentials type from next-auth
       async authorize(credentials: any) {
+        console.log("crednitails : ", {credentials});
+        
         // TODO : zod validation, OTP validation here
         const hashedPassword = await hash(credentials.password, 10);
         // TODO: Refactor to util function
@@ -26,6 +28,8 @@ export const authOptions = {
         });
 
         if (existingUser) {
+          console.log("exisitng user ===== : ", existingUser);
+          
           const validatePassword = await compareHashed(
             credentials.password,
             existingUser.password
@@ -41,12 +45,17 @@ export const authOptions = {
         }
 
         try {
+          console.log("new user ==============");
+          
           const user = await db.user.create({
             data: {
               number: credentials.phone,
               password: hashedPassword,
             },
           });
+
+          console.log("new user created ======>>>>> ", user);
+          
 
           return {
             id: user.id.toString(),

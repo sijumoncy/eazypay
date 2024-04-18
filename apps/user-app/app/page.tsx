@@ -1,12 +1,17 @@
-import { Button } from "@repo/ui/button";
-import BalanceComponent from "../components/balanceComponent";
+"use client";
+import { Appbar } from "@repo/ui/appbar";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Page(): JSX.Element {
+  const session = useSession();
+
   return (
     <main className="">
-      <div className="text-red-500 text-2xl">Hii From User App</div>
-      <Button className="hover:bg-green-500">UserAppButton</Button>
-      <BalanceComponent/>
+      <Appbar
+        onSignin={signIn}
+        onSignout={signOut}
+        user={session?.data?.user}
+      />
     </main>
   );
 }
