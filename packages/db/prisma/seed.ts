@@ -1,14 +1,21 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
+import { hash } from "@repo/utils/hashUtils";
 
 async function seed() {
   const alice = await prisma.user.upsert({
-    where: { number: "9999999999" },
+    where: { number: "1111111111" },
     update: {},
     create: {
-      number: "9999999999",
-      password: "alice",
+      number: "1111111111",
+      password: await hash("alice"),
       name: "alice",
+      Balance:{
+        create:{
+          amount : 2000, // 20 ruppers 2000 / 20 => if 20.20 => 20.20 * 100 = 2020
+          locked : 0
+        }
+      },
       OnRampTransaction: {
         create: {
           startTime: new Date(),
@@ -21,12 +28,18 @@ async function seed() {
     },
   });
   const bob = await prisma.user.upsert({
-    where: { number: "9999999998" },
+    where: { number: "2222222222" },
     update: {},
     create: {
-      number: "9999999998",
-      password: "bob",
+      number: "2222222222",
+      password: await hash("bob"),
       name: "bob",
+      Balance:{
+        create:{
+          amount : 2000, // 20 ruppers 2000 / 20 => if 20.20 => 20.20 * 100 = 2020
+          locked : 0
+        }
+      },
       OnRampTransaction: {
         create: {
           startTime: new Date(),
