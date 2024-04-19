@@ -7,13 +7,16 @@
     "name": "sijumoncy"
   },
   "keywords": [],
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "devDependencies": {
     "prisma": "5.12.1"
   },
   "dependencies": {
     "@prisma/client": "5.12.1"
   },
-  "exports":{
-    "./client" : "./index.ts"
+  "exports": {
+    "./client": "./index.ts"
   }
 }
