@@ -1,19 +1,19 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
-import { hash } from "@repo/utils/hashUtils";
+import bcrypt from "bcrypt";
 
 async function seed() {
   const alice = await prisma.user.upsert({
-    where: { number: "1111111111" },
+    where: { number: '1111111111' },
     update: {},
     create: {
-      number: "1111111111",
-      password: await hash("alice"),
-      name: "alice",
-      Balance:{
-        create:{
-          amount : 2000, // 20 ruppers 2000 / 20 => if 20.20 => 20.20 * 100 = 2020
-          locked : 0
+      number: '1111111111',
+      password: await bcrypt.hash('alice', 10),
+      name: 'alice',
+      Balance: {
+        create: {
+            amount: 20000,
+            locked: 0
         }
       },
       OnRampTransaction: {
@@ -21,23 +21,23 @@ async function seed() {
           startTime: new Date(),
           status: "Success",
           amount: 20000,
-          token: "122",
+          token: "token__1",
           provider: "HDFC Bank",
         },
       },
     },
-  });
+  })
   const bob = await prisma.user.upsert({
-    where: { number: "2222222222" },
+    where: { number: '2222222222' },
     update: {},
     create: {
-      number: "2222222222",
-      password: await hash("bob"),
-      name: "bob",
-      Balance:{
-        create:{
-          amount : 2000, // 20 ruppers 2000 / 20 => if 20.20 => 20.20 * 100 = 2020
-          locked : 0
+      number: '2222222222',
+      password: await bcrypt.hash('bob', 10),
+      name: 'bob',
+      Balance: {
+        create: {
+            amount: 2000,
+            locked: 0
         }
       },
       OnRampTransaction: {
@@ -45,12 +45,12 @@ async function seed() {
           startTime: new Date(),
           status: "Failure",
           amount: 2000,
-          token: "123",
+          token: "token__2",
           provider: "HDFC Bank",
         },
       },
     },
-  });
+  })
   console.log({ alice, bob });
 }
 seed()
