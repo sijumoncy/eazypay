@@ -10,7 +10,7 @@ export const TextInput = ({
   placeholder: string;
   onChange: (value: string) => void;
   label: string;
-  value: number;
+  value: string | number;
   type: string;
 }) => {
   return (

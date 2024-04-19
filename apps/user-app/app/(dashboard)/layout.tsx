@@ -1,5 +1,5 @@
 import { SidebarItem } from "../../components/SideBarItem";
-import { HomeIcon, ClockIcon, TransferArrowIcon } from "@repo/icons/icons";
+import { HomeIcon, ClockIcon, TransferArrowIcon, ShareMoneyIcon } from "@repo/icons/icons";
 
 export default function Layout({
   children,
@@ -26,6 +26,13 @@ export default function Layout({
               <TransferArrowIcon classes="w-5 h-5" />
             }
             title="Transactions"
+          />
+          <SidebarItem
+            href={"/p2ptransfer"}
+            icon={
+              <ShareMoneyIcon classes="w-5 h-5" />
+            }
+            title="P2P Payment"
           />
         </div>
       </div>
