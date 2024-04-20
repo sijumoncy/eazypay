@@ -13,6 +13,21 @@ app.post("/hdfcWebhook", async (req, res) => {
   };
 
   try {
+    // Check if the onRamp is processing or not => only process if onRamp is inprocess
+    const inProcessTransaction = await db.onRampTransaction.findFirst({
+      where: {
+        token: paymentInformation.token,
+        userId: paymentInformation.userId,
+        status: "Processing",
+      },
+    });
+
+    if (!inProcessTransaction) {
+      return {
+        message: "Invalid request.No transaction is initiated for the request",
+      };
+    }
+
     await db.$transaction([
       // update the balance
       db.balance.updateMany({
