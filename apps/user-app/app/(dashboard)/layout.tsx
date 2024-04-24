@@ -1,5 +1,11 @@
 import { SidebarItem } from "../../components/SideBarItem";
-import { HomeIcon, ClockIcon, TransferArrowIcon, ShareMoneyIcon } from "@repo/icons/icons";
+import {
+  HomeIcon,
+  ClockIcon,
+  TransferArrowIcon,
+  ShareMoneyIcon,
+} from "@repo/icons/icons";
+import Navbar from "@repo/ui/navbar";
 
 export default function Layout({
   children,
@@ -7,8 +13,8 @@ export default function Layout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <div className="flex">
-      <div className="w-72 border-r border-slate-300 min-h-screen mr-4 pt-28">
+    <div className="flex ">
+      {/* <div className="w-72 border-r border-slate-300 min-h-screen mr-4 pt-28">
         <div>
           <SidebarItem
             href={"/dashboard"}
@@ -35,7 +41,8 @@ export default function Layout({
             title="P2P Payment"
           />
         </div>
-      </div>
+      </div> */}
+      <Navbar/>
       {children}
     </div>
   );

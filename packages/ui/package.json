@@ -9,7 +9,8 @@
     "./appbar": "./src/appbar.tsx",
     "./center": "./src/center.tsx",
     "./select": "./src/select.tsx",
-    "./textInput": "./src/textInput.tsx"
+    "./textInput": "./src/textInput.tsx",
+    "./navbar": "./src/Navbar/navbar.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -25,6 +26,7 @@
     "@types/react-dom": "^18.2.19",
     "eslint": "^8.57.0",
     "react": "^18.2.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "@repo/icons": "*"
   }
 }
