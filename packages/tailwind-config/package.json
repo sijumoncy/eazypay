@@ -1,0 +1,17 @@
+{
+  "name": "@repo/tailwind-config",
+  "description": "Tailwindcss config",
+  "version": "0.0.1",
+  "main": "index.ts",
+  "types": "index.ts",
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  },
+  "dependencies": {},
+  "author": "Siju Moncy",
+  "keywords": [
+    "eazypay",
+    "tailwind",
+    "tailwindcss"
+  ]
+}
