@@ -10,21 +10,22 @@
   },
   "dependencies": {
     "@repo/db": "*",
-    "@repo/ui": "*",
     "@repo/icons": "*",
-    "@repo/utils": "*",
     "@repo/store": "*",
+    "@repo/ui": "*",
+    "@repo/utils": "*",
     "bcrypt": "^5.1.1",
     "next": "^14.1.1",
     "next-auth": "^4.24.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.1.1",
     "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
     "@repo/tailwind-config": "*",
+    "@repo/typescript-config": "*",
     "@types/bcrypt": "^5.0.2",
     "@types/eslint": "^8.56.5",
     "@types/node": "^20.11.24",

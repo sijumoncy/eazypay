@@ -20,9 +20,9 @@
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/icons": "*",
-    "@repo/utils": "*",
     "@repo/tailwind-config": "*",
     "@repo/typescript-config": "*",
+    "@repo/utils": "*",
     "@turbo/gen": "^1.12.4",
     "@types/eslint": "^8.56.5",
     "@types/node": "^20.11.24",
@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
     "lucide-react": "^0.376.0"
   }
 }

@@ -1,22 +1,43 @@
-import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../dropdown-menu";
+import { IDropDownItem } from "../interace";
+import ProfileCard from "./profile-card";
 
 interface IProfileProps {
   avatarUrl?: string;
   name: string;
   userId: string;
+  dropdownItemsArr?: IDropDownItem[][]; // send nested array for seperation [ [item1, item2], [item1, item2] ]
 }
 
-function profile({ avatarUrl, name, userId }: IProfileProps) {
+function profile({ avatarUrl, name, userId, dropdownItemsArr }: IProfileProps) {
   return (
-    <div className="flex gap-4 items-center border border-gray-200 px-2 py-3 rounded-xl cursor-pointer">
-      <Avatar>
-        <AvatarImage className="" src={avatarUrl} />
-        <AvatarFallback className="bg-gray-500 text-white">CN</AvatarFallback>
-      </Avatar>
-      <div className="grid gap-1">
-        <p className="text-sm font-medium leading-none">{name}</p>
-        <p className="text-sm text-muted-foreground">{userId}</p>
-      </div>
+    <div className="w-full max-w-72">
+      <DropdownMenu>
+        <DropdownMenuTrigger className="w-full">
+          <ProfileCard name={name} avatarUrl={avatarUrl} userId={userId} />
+        </DropdownMenuTrigger>
+        {dropdownItemsArr?.length && (
+          <DropdownMenuContent className="max-w-full">
+            {dropdownItemsArr.map((sectionArr) => (
+              <>
+                {sectionArr?.map((item) => (
+                  <DropdownMenuItem onClick={item.onClick}>
+                    {item.name}
+                  </DropdownMenuItem>
+                ))}
+                <DropdownMenuSeparator />
+              </>
+            ))}
+          </DropdownMenuContent>
+        )}
+      </DropdownMenu>
     </div>
   );
 }
