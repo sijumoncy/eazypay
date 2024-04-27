@@ -5,6 +5,7 @@ import ShareMoney from "./shareMoney";
 import Logo from "./logo";
 import MenuBar from "./menubar";
 import SignOut from "./signout";
+import Arrow from "./arrow";
 
 export { Home as HomeIcon };
 export { Clock as ClockIcon };
@@ -13,3 +14,4 @@ export { ShareMoney as ShareMoneyIcon };
 export { Logo };
 export { MenuBar as MenuBarIcon };
 export { SignOut as SignOutIcon };
+export { Arrow as ArrowIcon };

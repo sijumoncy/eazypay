@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Button } from "./button";
-import { Logo, MenuBarIcon, SignOutIcon} from "@repo/icons/icons";
+import { ArrowIcon, Logo, MenuBarIcon, SignOutIcon} from "@repo/icons/icons";
 
 interface AppbarProps {
   isAuthenticated: boolean;
@@ -30,9 +30,9 @@ export const Appbar = ({
           {fnToggleNav && (
             <button className="" onClick={fnToggleNav}>
               {toggleNav ? (
-                <MenuBarIcon classes="w-7 h-7 fill-dark" />
-              ) : (
-                <MenuBarIcon classes="w-7 h-7 fill-dark" />
+                  <ArrowIcon classes="w-7 h-7 fill-heading" />
+                ) : (
+                  <MenuBarIcon classes="w-7 h-7 fill-dark" />
               )}
             </button>
           )}

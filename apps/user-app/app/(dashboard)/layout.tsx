@@ -1,11 +1,4 @@
-import { SidebarItem } from "../../components/SideBarItem";
-import {
-  HomeIcon,
-  ClockIcon,
-  TransferArrowIcon,
-  ShareMoneyIcon,
-} from "@repo/icons/icons";
-import Navbar from "@repo/ui/navbar";
+import SideNavBar from "../../components/sideNavBar";
 
 export default function Layout({
   children,
@@ -42,7 +35,7 @@ export default function Layout({
           />
         </div>
       </div> */}
-      <Navbar/>
+      <SideNavBar/>
       {children}
     </div>
   );
