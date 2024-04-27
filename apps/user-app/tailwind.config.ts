@@ -14,7 +14,9 @@ const config: Pick<Config, "presets"> = {
         extend: {
           ...sharedConfig?.theme?.extend,
           colors :{
-            "primary" : "#3273a8"
+            "bgClr" : "var(--bgClr)",
+            "heading" : "#193b62",
+            "dark": "#141414"
           }
         },
       },
