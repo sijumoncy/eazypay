@@ -15,18 +15,19 @@ export const SidebarItem = ({ href, title, icon }: ISideBarItem) => {
 
   return (
     <div
-      className={`flex ${selected ? "text-[#6a51a6]" : "text-slate-500"} cursor-pointer  p-2 pl-8`}
+      className={`flex ${selected ? "text-[#6a51a6]" : "text-slate-500"} cursor-pointer  p-2 gap-4`}
+      title={title}
       onClick={() => {
         router.push(href);
       }}
     >
       <div
-        className={`pr-2 ${selected ? "stroke-[#6a51a6] stroke-[2.3px]" : "stroke-black stroke-1"} `}
+        className={`pr-2 ${selected ? "stroke-[#6a51a6] stroke-[2.3px]" : "stroke-black stroke-1"} bg-red-500`}
       >
         {icon}
       </div>
       <div
-        className={`font-bold ${selected ? "text-[#6a51a6]" : "text-slate-500"}`}
+        className={`font-bold ${selected ? "text-[#6a51a6]" : "text-slate-500"} overflow-hidden`}
       >
         {title}
       </div>

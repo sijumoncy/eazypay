@@ -4,6 +4,7 @@ import { IDropDownItem } from "../interace";
 
 interface INavbarProps {
   isMinimised: boolean;
+  children: React.ReactNode;
 }
 
 const profileMenuItems: IDropDownItem[][] = [
@@ -11,12 +12,12 @@ const profileMenuItems: IDropDownItem[][] = [
   [{ name: "Logout" }],
 ];
 
-function Navbar({ isMinimised }: INavbarProps) {
+function Navbar({ isMinimised, children }: INavbarProps) {
   return (
     <div
-      className={`max-w-72 ${isMinimised ? "w-28" : "w-full"} min-h-screen mr-4 p-4 transition-width duration-1000 bg-[var(--navBg)] rounded-xl`}
+      className={`max-w-72 ${isMinimised ? "w-28" : "w-full"} min-h-[calc(100vh_-_5rem)] md:min-h-[calc(100vh_-_4rem)]  mr-4 p-4 transition-width duration-1000 bg-[var(--navBg)] rounded-xl`}
     >
-      <div className="w-full h-full rounded-xl p-2 border border-black">
+      <div className="w-full h-full rounded-xl p-2 flex flex-col gap-2">
         <div className="w-full">
           <Profile
             name="Alice"
@@ -24,7 +25,7 @@ function Navbar({ isMinimised }: INavbarProps) {
             dropdownItemsArr={profileMenuItems}
           />
         </div>
-        <div></div>
+        <div className="w-full rounded-xl p-2 border h-full">{children}</div>
       </div>
     </div>
   );
