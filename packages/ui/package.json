@@ -10,24 +10,30 @@
     "./center": "./src/center.tsx",
     "./select": "./src/select.tsx",
     "./textInput": "./src/textInput.tsx",
-    "./navbar": "./src/Navbar/navbar.tsx"
+    "./navbar": "./src/Navbar/navbar.tsx",
+    "./profile": "./src/Profile/profile.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component"
   },
   "devDependencies": {
-    "@repo/tailwind-config": "*",
     "@repo/eslint-config": "*",
+    "@repo/icons": "*",
+    "@repo/utils": "*",
+    "@repo/tailwind-config": "*",
     "@repo/typescript-config": "*",
     "@turbo/gen": "^1.12.4",
-    "@types/node": "^20.11.24",
     "@types/eslint": "^8.56.5",
+    "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
     "eslint": "^8.57.0",
     "react": "^18.2.0",
-    "typescript": "^5.3.3",
-    "@repo/icons": "*"
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@radix-ui/react-avatar": "^1.0.4",
+    "lucide-react": "^0.376.0"
   }
 }

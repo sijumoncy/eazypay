@@ -13,11 +13,15 @@ const config: Pick<Config, "presets"> = {
       theme: {
         extend: {
           ...sharedConfig?.theme?.extend,
-          colors :{
-            "bgClr" : "var(--bgClr)",
-            "heading" : "#193b62",
-            "dark": "#141414"
-          }
+          colors: {
+            bgClr: "var(--bgClr)",
+            heading: "#193b62",
+            dark: "#141414",
+            muted: {
+              DEFAULT: "hsl(var(--muted))",
+              foreground: "hsl(var(--muted-foreground))",
+            },
+          },
         },
       },
     },
