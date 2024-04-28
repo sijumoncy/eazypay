@@ -11,7 +11,6 @@ const ShareMoney: React.FC<IShareMoneyProps> = ({ classes }) => {
       viewBox="0 0 24 24"
       id="ShareMoney"
       className={classes}
-      fill="none"
     >
       <g transform="matrix(0.83 0 0 0.83 12 12)">
         <g>

@@ -22,7 +22,7 @@ export const SidebarItem = ({ href, title, icon }: ISideBarItem) => {
       }}
     >
       <div
-        className={`pr-2 ${selected ? "stroke-[#6a51a6] stroke-[2.3px]" : "stroke-black stroke-1"} bg-red-500`}
+        className={`pr-2 ${selected ? "stroke-[#6a51a6] stroke-[2.3px]" : "stroke-black stroke-1"}`}
       >
         {icon}
       </div>

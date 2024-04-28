@@ -15,25 +15,25 @@ const sidebarNav = [
     id: 1,
     href: "/dashboard",
     title: "Home",
-    icon: <HomeIcon classes="w-5 h-5 fill-black" />,
+    icon: <HomeIcon classes="w-5 h-5 fill-none" />,
   },
   {
     id: 2,
     href: "/transfer",
     title: "Transfer",
-    icon: <ClockIcon classes="w-5 h-5 fill-black" />,
+    icon: <ClockIcon classes="w-5 h-5 " />,
   },
   {
     id: 3,
     href: "/transactions",
     title: "Transactions",
-    icon: <TransferArrowIcon classes="w-5 h-5 fill-black" />,
+    icon: <TransferArrowIcon classes="w-5 h-5 " />,
   },
   {
     id: 4,
     href: "/p2ptransfer",
     title: "P2P Payment",
-    icon: <ShareMoneyIcon classes="w-5 h-5 fill-black" />,
+    icon: <ShareMoneyIcon classes="w-5 h-5 fill-none" />,
   },
 ];
 
