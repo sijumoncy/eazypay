@@ -13,37 +13,25 @@ const TransferArrow: React.FC<ITransferProps> = ({ classes }) => {
       className={classes}
       fill="current"
     >
-      <g transform="matrix(0.83 0 0 0.83 12 12)">
-        <g>
-          <g transform="matrix(1 0 0 1 -4.1 -2.1)">
-            <path
-              transform=" translate(-7.5, -9.5)"
-              d="M 0.5 9.5 L 14.5 9.5"
-              strokeLinecap="round"
-            />
-          </g>
-          <g transform="matrix(1 0 0 1 4.9 2.9)">
-            <path
-              transform=" translate(-16.5, -14.5)"
-              d="M 9.5 14.5 L 23.5 14.5"
-              strokeLinecap="round"
-            />
-          </g>
-          <g transform="matrix(1 0 0 1 -9.1 -2.1)">
-            <path
-              transform=" translate(-2.5, -9.5)"
-              d="M 4.5 13.5 L 0.5 9.5 L 4.5 5.5"
-              strokeLinecap="round"
-            />
-          </g>
-          <g transform="matrix(1 0 0 1 9.9 2.9)">
-            <path
-              transform=" translate(-21.5, -14.5)"
-              d="M 19.5 18.5 L 23.5 14.5 L 19.5 10.5"
-              strokeLinecap="round"
-            />
-          </g>
-        </g>
+      <g transform="matrix(1 0 0 1 12 12)">
+        <path
+          style={{
+            stroke: "none",
+            strokeWidth: 1,
+            strokeDasharray: "none",
+            strokeLinecap: "butt",
+            strokeDashoffset: 0,
+            strokeLinejoin: "miter",
+            strokeMiterlimit: 4,
+            fill: "current",
+            fillRule: "nonzero",
+            opacity: 1,
+            rotate: "135deg"
+          }}
+          transform=" translate(-12.03, -12)"
+          d="M 8 2 L 8 8 L 10.292969 5.7070312 L 19.585938 15.001953 L 21.001953 13.585938 L 11.707031 4.2929688 L 14 2 L 8 2 z M 4.4726562 9.0585938 L 3.0585938 10.472656 L 12.292969 19.707031 L 10 22 L 16 22 L 16 16 L 13.707031 18.292969 L 4.4726562 9.0585938 z"
+          stroke-linecap="round"
+        />
       </g>
     </svg>
   );

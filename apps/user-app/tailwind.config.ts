@@ -22,6 +22,9 @@ const config: Pick<Config, "presets"> = {
               DEFAULT: "hsl(var(--muted))",
               foreground: "hsl(var(--muted-foreground))",
             },
+            primary:{
+              DEFAULT : "var(--primary-default)" 
+            }
           },
         },
       },

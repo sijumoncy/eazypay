@@ -6,6 +6,8 @@ import Logo from "./logo";
 import MenuBar from "./menubar";
 import SignOut from "./signout";
 import Arrow from "./arrow";
+import DashBoardIcon from "./dashboard";
+import BankIcon from "./bank";
 
 export { Home as HomeIcon };
 export { Clock as ClockIcon };
@@ -15,3 +17,5 @@ export { Logo };
 export { MenuBar as MenuBarIcon };
 export { SignOut as SignOutIcon };
 export { Arrow as ArrowIcon };
+
+export { DashBoardIcon, BankIcon };
