@@ -5,6 +5,7 @@
   "exports": {
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
+    "./cardtransfer": "./src/card-transfer.tsx",
     "./code": "./src/code.tsx",
     "./appbar": "./src/appbar.tsx",
     "./center": "./src/center.tsx",
@@ -14,7 +15,8 @@
     "./profile": "./src/Profile/profile.tsx",
     "./pagehead": "./src/page-head.tsx",
     "./box": "./src/box.tsx",
-    "./creditcard": "./src/credit-card.tsx"
+    "./creditcard": "./src/credit-card.tsx",
+    "./statuscard": "./src/status-card.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

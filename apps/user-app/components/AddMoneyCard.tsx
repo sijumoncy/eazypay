@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@repo/ui/button";
-import { Card } from "@repo/ui/card";
+import { CardTransfer } from "@repo/ui/cardtransfer";
 import { Select } from "@repo/ui/select";
 import { useState } from "react";
 import { TextInput } from "@repo/ui/textInput";
@@ -31,7 +31,7 @@ export const AddMoney = () => {
   };
 
   return (
-    <Card title="Add Money">
+    <CardTransfer title="Add Money">
       <div className="w-full">
         <TextInput
           label={"Amount"}
@@ -59,6 +59,6 @@ export const AddMoney = () => {
           <Button onClick={() => handleAddMoney()}>Add Money</Button>
         </div>
       </div>
-    </Card>
+    </CardTransfer>
   );
 };

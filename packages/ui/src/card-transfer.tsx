@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Card({
+export function CardTransfer({
   title,
   children,
 }: {

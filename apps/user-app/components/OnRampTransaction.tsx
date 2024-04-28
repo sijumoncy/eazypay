@@ -1,4 +1,4 @@
-import { Card } from "@repo/ui/card";
+import { CardTransfer } from "@repo/ui/cardtransfer";
 
 export const OnRampTransactions = ({
   transactions,
@@ -13,13 +13,13 @@ export const OnRampTransactions = ({
 }) => {
   if (!transactions.length) {
     return (
-      <Card title="Recent Transactions">
+      <CardTransfer title="Recent Transactions">
         <div className="text-center pb-8 pt-8">No Recent transactions</div>
-      </Card>
+      </CardTransfer>
     );
   }
   return (
-    <Card title="Recent Transactions">
+    <CardTransfer title="Recent Transactions">
       <div className="pt-2">
         {transactions.map((t) => (
           <div className="flex justify-between">
@@ -35,6 +35,6 @@ export const OnRampTransactions = ({
           </div>
         ))}
       </div>
-    </Card>
+    </CardTransfer>
   );
 };
