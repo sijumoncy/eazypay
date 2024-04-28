@@ -14,6 +14,9 @@ const config: Pick<Config, "presets"> = {
       theme: {
         extend: {
           ...sharedConfig?.theme?.extend,
+          boxShadow : {
+            box : '0px 5px 5px 0px rgba(82, 63, 105, 0.05)'
+          },
           colors: {
             bgClr: "var(--bgClr)",
             heading: "#193b62",
