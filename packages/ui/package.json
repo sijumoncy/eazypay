@@ -11,7 +11,8 @@
     "./select": "./src/select.tsx",
     "./textInput": "./src/textInput.tsx",
     "./navbar": "./src/Navbar/navbar.tsx",
-    "./profile": "./src/Profile/profile.tsx"
+    "./profile": "./src/Profile/profile.tsx",
+    "./pagehead": "./src/page-head.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
