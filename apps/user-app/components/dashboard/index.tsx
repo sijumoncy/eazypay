@@ -2,7 +2,7 @@ import Box from "@repo/ui/box";
 import React from "react";
 import CreditCard from "@repo/ui/creditcard";
 import StatusCard from "@repo/ui/statuscard";
-import DataTable from "@repo/ui/datatable";
+import { DataTable } from "@repo/ui/datatable";
 import { employeeColumns } from "./column";
 
 const statusDummyData = [
