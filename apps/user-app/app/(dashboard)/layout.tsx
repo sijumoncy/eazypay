@@ -6,7 +6,7 @@ export default function Layout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <div className="flex">
+    <div className="flex h-[calc(100vh_-_65px)] overflow-y-auto">
       <SideNavBar/>
       {children}
     </div>
