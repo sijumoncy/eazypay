@@ -4,6 +4,7 @@ import CreditCard from "@repo/ui/creditcard";
 import StatusCard from "@repo/ui/statuscard";
 import { DataTable } from "@repo/ui/datatable";
 import { employeeColumns } from "./column";
+import { Texts } from "@repo/ui/texts";
 
 const statusDummyData = [
   {
@@ -134,15 +135,23 @@ function DashBoard() {
       </div>
 
       {/* overview wallet*/}
-      <div className="max-w-[500px]">
+      <div className="grid grid-cols-2 gap-2">
+        <Box className="max-w-[500px ]w-full h-full shadow-box">
+          <CreditCard balance={123456} accHolder="Alice" className="border" />
+        </Box>
         <Box className="w-full h-full shadow-box ">
           <CreditCard balance={123456} accHolder="Alice" className="border" />
         </Box>
       </div>
 
       {/* recent transactions */}
-      <div className="w-full min-h-14">
+      <div className="w-full min-h-14 pb-4">
         <Box className="w-full h-full shadow-box border mx-auto">
+          <div className="py-2 flex flex-col gap-1">
+            <Texts variant={"cardHead"} >Recent Transactions</Texts>
+            <Texts colors={"muted"}>Quick view of recent transactions details</Texts>
+          </div>
+          {/* the column data need to changed with actual data later */}
           <DataTable data={tableDummyData} columns={employeeColumns} />
         </Box>
       </div>

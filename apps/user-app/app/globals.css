@@ -10,6 +10,10 @@
   --primary-default: #6a51a6;
   --theme-light: #fff;
   --theme-dark: #1e1e1e1;
+  --success : #68E365;
+  --danger : #F72B50;
+  --warning : #FFA755;
+  
 }
 
 body {

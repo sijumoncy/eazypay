@@ -21,7 +21,8 @@
     "./dropdownmenu": "./src/dropdown-menu.tsx",
     "./checkbox": "./src/checkbox.tsx",
     "./badge": "./src/badge.tsx",
-    "./tableUtils": "./src/DataTable/utils.ts"
+    "./tableUtils": "./src/DataTable/utils.ts",
+    "./texts": "./src/texts.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

@@ -42,15 +42,17 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   // table: TanstackTable<TData>; //HERE
-  IsRowSelectable?: boolean;
   IsColumnHideShow?: boolean;
+  IsColumnMovable?: boolean;
+  isPaginationActive?: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
-  IsRowSelectable = false,
   IsColumnHideShow = false,
+  IsColumnMovable = false,
+  isPaginationActive = false,
 }: DataTableProps<TData, TValue>) {
   //STATES:
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -244,27 +246,31 @@ export function DataTable<TData, TValue>({
             )}
           </TableBody>
 
-          <TableFooter>
-            {table.getFooterGroups().map((footerGroup) => (
-              <TableRow key={footerGroup.id}>
-                {footerGroup.headers.map((header) => (
-                  <TableCell key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.footer,
-                          header.getContext()
-                        )}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableFooter>
+          {IsColumnMovable && (
+            <TableFooter>
+              {table.getFooterGroups().map((footerGroup) => (
+                <TableRow key={footerGroup.id}>
+                  {footerGroup.headers.map((header) => (
+                    <TableCell key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.footer,
+                            header.getContext()
+                          )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableFooter>
+          )}
         </Table>
       </div>
+      {isPaginationActive && (
       <div className="flex justify-end pt-4">
         <DataTablePagination table={table}></DataTablePagination>
       </div>
+      )}
     </div>
   );
 }
