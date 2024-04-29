@@ -137,12 +137,9 @@ function DashBoard() {
       </div>
 
       {/* overview wallet*/}
-      <div className="grid grid-cols-2 gap-2">
-        <Box className="max-w-[500px ]w-full h-full shadow-box">
-          <CreditCard balance={123456} accHolder="Alice" className="border" />
-        </Box>
-        <Box className="w-full h-full shadow-box ">
-          <CreditCard balance={123456} accHolder="Alice" className="border" />
+      <div className="grid grid-cols-1 gap-2 ">
+        <Box className="max-w-[500px] w-full h-full shadow-box relative flex justify-center ">
+          <CreditCard balance={123456} accHolder="Alice" className="border-2 border-green-500" joinedOn="01/24"/>
         </Box>
       </div>
 

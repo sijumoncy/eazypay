@@ -14,8 +14,12 @@ const config: Pick<Config, "presets"> = {
       theme: {
         extend: {
           ...sharedConfig?.theme?.extend,
-          boxShadow : {
-            box : '0px 5px 5px 0px rgba(82, 63, 105, 0.05)'
+          screens: {
+            "mob": "425px",
+            "tabL" : "900px"
+          },
+          boxShadow: {
+            box: "0px 5px 5px 0px rgba(82, 63, 105, 0.05)",
           },
           colors: {
             bgClr: "var(--bgClr)",
@@ -25,9 +29,9 @@ const config: Pick<Config, "presets"> = {
               DEFAULT: "hsl(var(--muted))",
               foreground: "hsl(var(--muted-foreground))",
             },
-            primary:{
-              DEFAULT : "var(--primary-default)" 
-            }
+            primary: {
+              DEFAULT: "var(--primary-default)",
+            },
           },
         },
       },

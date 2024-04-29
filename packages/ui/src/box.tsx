@@ -7,7 +7,7 @@ interface IBoxProps {
 
 function Box({ className, children }: IBoxProps) {
   return (
-    <div className={cn("rounded-2xl p-5 bg-[var(--theme-light)] shadow-lg", className)}>
+    <div className={cn("rounded-2xl p-1.5 bg-[var(--theme-light)] shadow-lg mob:p-3 tabL:p-5", className)}>
       {children}
     </div>
   );
