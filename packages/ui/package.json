@@ -17,7 +17,11 @@
     "./box": "./src/box.tsx",
     "./creditcard": "./src/credit-card.tsx",
     "./statuscard": "./src/status-card.tsx",
-    "./datatable": "./src/DataTable/index.tsx"
+    "./datatable": "./src/DataTable/index.tsx",
+    "./dropdownmenu": "./src/dropdown-menu.tsx",
+    "./checkbox": "./src/checkbox.tsx",
+    "./badge": "./src/badge.tsx",
+    "./tableUtils": "./src/DataTable/utils.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -43,6 +47,7 @@
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
+    "@radix-ui/react-separator": "^1.0.3",
     "@tanstack/react-table": "^8.16.0",
     "class-variance-authority": "^0.7.0",
     "lucide-react": "^0.376.0"
