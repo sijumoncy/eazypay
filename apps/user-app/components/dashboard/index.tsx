@@ -12,10 +12,11 @@ const statusDummyData = [
     title: "Total Transfer",
     content: "1000",
     subContent: "",
+    className:"bg-primary text-bgClr"
   },
-  { id: 2, title: "Total Success", content: "800", subContent: "" },
-  { id: 3, title: "Total Failed", content: "198", subContent: "" },
-  { id: 4, title: "Total Pending", content: "2", subContent: "" },
+  { id: 2, title: "Total Success", content: "800", subContent: "", className:"bg-[var(--success)] text-bgClr" },
+  { id: 3, title: "Total Failed", content: "198", subContent: "", className:"bg-[var(--danger)] text-bgClr" },
+  { id: 4, title: "Total Pending", content: "2", subContent: "", className:"bg-[var(--warning)] text-bgClr" },
 ];
 
 const tableDummyData = [
@@ -123,12 +124,13 @@ function DashBoard() {
       {/* quick statics */}
       <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
         {statusDummyData.map((item) => (
-          <div className="bg-[var(--theme-light)]">
+          <div className="">
             <StatusCard
               key={item.id}
               Content={item.content}
               title={item.title}
               subContent={item.subContent}
+              className={item.className}
             />
           </div>
         ))}
