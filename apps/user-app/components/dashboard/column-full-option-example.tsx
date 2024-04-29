@@ -1,3 +1,6 @@
+/**
+ * Dummy example column data def or the table
+ */
 "use client"
 import { ColumnDef } from "@tanstack/react-table";
 import {

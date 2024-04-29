@@ -36,16 +36,21 @@ import {
 } from "../dropdown-menu";
 import { Separator } from "../seperator";
 import { DataTablePagination } from "./pagination-control";
+import { Button } from "../button";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   // table: TanstackTable<TData>; //HERE
+  IsRowSelectable?: boolean;
+  IsColumnHideShow?: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  IsRowSelectable = false,
+  IsColumnHideShow = false,
 }: DataTableProps<TData, TValue>) {
   //STATES:
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -134,16 +139,18 @@ export function DataTable<TData, TValue>({
           </div> */}
 
           {isFiltered && (
-            <button
+            <Button
+              variant={"outline"}
               onClick={() => table.resetColumnFilters()}
               className="w-40 p-2"
             >
               Clear filters
-            </button>
+            </Button>
           )}
         </div>
 
-        <button
+        <Button
+          variant={"destructive"}
           onClick={() => {
             table.resetRowSelection(),
               table.resetColumnFilters(),
@@ -153,32 +160,38 @@ export function DataTable<TData, TValue>({
           className="text-red-800 border-red-800"
         >
           Reset table
-        </button>
+        </Button>
       </div>
 
       {/* Column selection button */}
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button className="ml-auto">Select columns</button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          {table
-            .getAllColumns()
-            .filter((column) => column.getCanHide())
-            .map((column) => {
-              return (
-                <DropdownMenuCheckboxItem
-                  key={column.id}
-                  className="capitalize"
-                  checked={column.getIsVisible()}
-                  onCheckedChange={(value) => column.toggleVisibility(!!value)}
-                >
-                  {column.id}
-                </DropdownMenuCheckboxItem>
-              );
-            })}
-        </DropdownMenuContent>
-      </DropdownMenu>
+      {IsColumnHideShow && (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant={"outline"} className="ml-auto">
+              Select columns
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {table
+              .getAllColumns()
+              .filter((column) => column.getCanHide())
+              .map((column) => {
+                return (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
+                  >
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                );
+              })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )}
 
       <div className="mt-3 border rounded-md">
         <Table>
