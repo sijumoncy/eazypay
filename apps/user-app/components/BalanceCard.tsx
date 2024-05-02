@@ -1,4 +1,5 @@
 import { CardTransfer } from "@repo/ui/cardtransfer";
+import { Texts } from "@repo/ui/texts";
 
 export const BalanceCard = ({
   amount,
@@ -9,17 +10,17 @@ export const BalanceCard = ({
 }) => {
   return (
     <CardTransfer title={"Balance"}>
-      <div className="flex justify-between border-b border-slate-300 pb-2">
-        <div>Unlocked balance</div>
+      <div className="flex justify-between  py-2">
+        <Texts variant={"label"}>Unlocked balance</Texts>
         <div>{amount / 100} INR</div>
       </div>
-      <div className="flex justify-between border-b border-slate-300 py-2">
-        <div>Total Locked Balance</div>
+      <div className="flex justify-between  py-2">
+        <Texts variant={"label"}>Total Locked Balance</Texts>
         <div>{locked / 100} INR</div>
       </div>
-      <div className="flex justify-between border-b border-slate-300 py-2">
-        <div>Total Balance</div>
-        <div>{(locked + amount) / 100} INR</div>
+      <div className="flex justify-between  py-2">
+        <Texts variant={"label"} colors={"linkColor"}>Total Balance</Texts>
+        <div className="text-primary">{(locked + amount) / 100} INR</div>
       </div>
     </CardTransfer>
   );

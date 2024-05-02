@@ -36,7 +36,6 @@ async function getOnRampTransactions() {
 }
 
 async function Transfer() {
-
   const balance = await getBalance();
   const transactions = await getOnRampTransactions();
 
@@ -47,11 +46,13 @@ async function Transfer() {
           <Box>
             <AddMoney />
           </Box>
-          <div className="grid grid-cols-1 sm:grid-cols-2">
-            <BalanceCard amount={balance.amount} locked={balance.locked} />
-            <div className="pt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Box>
+              <BalanceCard amount={balance.amount} locked={balance.locked} />
+            </Box>
+            <Box className="pt-4">
               <OnRampTransactions transactions={transactions} />
-            </div>
+            </Box>
           </div>
         </div>
       </div>
