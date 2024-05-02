@@ -8,8 +8,8 @@
   --muted: 210 40% 96.1%;
   --muted-foreground: 215.4 16.3% 46.9%;
   --primary-default: #6a51a6;
-  --theme-light: #fff;
-  --theme-dark: #1e1e1e1;
+  --theme-background: #fff;
+  --theme-foreground: #1e1e1e1;
   --success : #68E365;
   --danger : #F72B50;
   --warning : #FFA755;

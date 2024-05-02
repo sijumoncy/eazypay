@@ -32,15 +32,17 @@ export const AddMoney = () => {
 
   return (
     <CardTransfer title="Add Money">
-      <div className="w-full">
+      <div className="w-full pt-2">
         <TextInput
-          label={"Amount"}
+          label={"How much you want to add?"}
           placeholder={"Amount"}
           value={amount}
           onChange={(value) => setAmount(Number(value))}
           type="number"
         />
-        <div className="py-4 text-left">Bank</div>
+        <label className="block mb-2 text-sm font-medium text-gray-900 pt-5">
+          Select Your Bank
+        </label>
         <Select
           onSelect={(value) => {
             setRedirectUrl(
@@ -56,7 +58,7 @@ export const AddMoney = () => {
           }))}
         />
         <div className="flex justify-center pt-4">
-          <Button onClick={() => handleAddMoney()}>Add Money</Button>
+          <Button variant={"default"} onClick={() => handleAddMoney()}>Add Money</Button>
         </div>
       </div>
     </CardTransfer>

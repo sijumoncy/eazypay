@@ -5,6 +5,7 @@ import { BalanceCard } from "../BalanceCard";
 import { OnRampTransactions } from "..//OnRampTransaction";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
+import Box from "@repo/ui/box";
 
 async function getBalance() {
   const session = await getServerSession(authOptions);
@@ -43,9 +44,9 @@ async function Transfer() {
     <div className="pt-5 flex flex-col gap-5">
       <div className="w-full">
         <div className="grid grid-cols-1 gap-10 p-4">
-          <div>
+          <Box>
             <AddMoney />
-          </div>
+          </Box>
           <div className="grid grid-cols-1 sm:grid-cols-2">
             <BalanceCard amount={balance.amount} locked={balance.locked} />
             <div className="pt-4">

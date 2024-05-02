@@ -23,6 +23,8 @@ const config: Pick<Config, "presets"> = {
           },
           colors: {
             bgClr: "var(--bgClr)",
+            danger: "var(--danger)",
+            success: "var(--success)",
             heading: "#193b62",
             dark: "#141414",
             muted: {

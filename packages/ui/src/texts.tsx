@@ -14,7 +14,7 @@ const textVariants = cva("", {
     },
     colors: {
       muted: "text-muted-foreground",
-      default: "text-[var(--theme-dark)]",
+      default: "text-[var(--theme-foreground)]",
       success: "text-[var(--success)]",
       danger: "text-[var(--danger)]",
       warning: "text-[var(--warning)]",
