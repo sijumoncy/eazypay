@@ -15,9 +15,9 @@ export function SendMoney() {
   };
 
   return (
-    <div className="h-[70vh]">
+    <div className="">
       <Center>
-        <CardTransfer title="Send">
+        <CardTransfer title="">
           <div className="min-w-72 pt-2">
             <TextInput
               label={"Number"}
@@ -36,7 +36,7 @@ export function SendMoney() {
               }}
             />
             <div className="pt-4 flex justify-center">
-              <Button onClick={() => handleSendMoney()}>Send</Button>
+              <Button variant={"default"} onClick={() => handleSendMoney()}>PAY</Button>
             </div>
           </div>
         </CardTransfer>

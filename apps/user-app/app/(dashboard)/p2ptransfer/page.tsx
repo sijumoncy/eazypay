@@ -1,11 +1,11 @@
 import PageHead from "@repo/ui/pagehead";
-import { SendMoney } from "../../../components/SendMoney";
+import P2PSend from "../../../components/p2p/p2pSend";
 export default function () {
   return (
-    <div className="w-screen">
+    <div className="w-full px-2 pt-10 overflow-y-scroll h-[98%] no-scrollbar">
       <PageHead text="P2P Transfer" />
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 ">
-        <SendMoney />
+        <P2PSend/>
       </div>
     </div>
   );
