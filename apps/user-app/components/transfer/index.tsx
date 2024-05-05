@@ -6,6 +6,7 @@ import { OnRampTransactions } from "..//OnRampTransaction";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import Box from "@repo/ui/box";
+import { ITransactionData, ITransactionDataArr, OnRampStatusTypeEnum } from "@repo/types/dbTypes";
 
 async function getBalance() {
   const session = await getServerSession(authOptions);
@@ -30,14 +31,14 @@ async function getOnRampTransactions() {
   return txns.map((t) => ({
     time: t.startTime,
     amount: t.amount,
-    status: t.status,
+    status: t.status as OnRampStatusTypeEnum,
     provider: t.provider,
   }));
 }
 
 async function Transfer() {
   const balance = await getBalance();
-  const transactions = await getOnRampTransactions();
+  const transactions:ITransactionDataArr = await getOnRampTransactions();
 
   return (
     <div className="pt-5 flex flex-col gap-5">

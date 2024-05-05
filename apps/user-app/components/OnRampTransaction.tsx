@@ -1,15 +1,10 @@
+import { ITransactionData } from "@repo/types/dbTypes";
 import { CardTransfer } from "@repo/ui/cardtransfer";
 
 export const OnRampTransactions = ({
   transactions,
 }: {
-  transactions: {
-    time: Date;
-    amount: number;
-    // TODO: Can the type of `status` be more specific?
-    status: string;
-    provider: string;
-  }[];
+  transactions: ITransactionData[];
 }) => {
   if (!transactions.length) {
     return (
