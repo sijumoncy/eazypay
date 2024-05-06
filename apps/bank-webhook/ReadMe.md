@@ -8,9 +8,9 @@
 ### To simulate
 
 - run bank webhook service `yarn dev`
-- request to api POST :  `http://localhost:<port>/hdfcWebhook` 
+- request to api POST :  `http://localhost:8003/hdfcWebhook` 
     - data : {
-        "token" : <token generated from client>,
+        "token" : "<token generated from client>",
         "user_id" : <user id in the db>,
         "amount" : 40000
     }

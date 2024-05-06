@@ -1,5 +1,4 @@
 import {
-  ITransactionData,
   ITransactionDataArr,
   OnRampStatusTypeEnum,
 } from "@repo/types/dbTypes";
