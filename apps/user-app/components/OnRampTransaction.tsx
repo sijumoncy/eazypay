@@ -3,6 +3,7 @@ import {
   ITransactionDataArr,
   OnRampStatusTypeEnum,
 } from "@repo/types/dbTypes";
+import { Badge } from "@repo/ui/badge";
 import { CardTransfer } from "@repo/ui/cardtransfer";
 
 const TransactionStatusText = ({
@@ -11,11 +12,11 @@ const TransactionStatusText = ({
   TransactionStatus: OnRampStatusTypeEnum;
 }) => {
   return TransactionStatus === OnRampStatusTypeEnum.Success ? (
-    <span className="bg-success">Done</span>
+    <Badge variant={"success"}>Done</Badge>
   ) : TransactionStatus === OnRampStatusTypeEnum.Processing ? (
-    <span className="bg-warning">Processing</span>
+    <Badge variant={"warning"}>Processing</Badge>
   ) : (
-    <span className="bg-danger">Failed</span>
+    <Badge variant={"destructive"}>Failed</Badge>
   );
 };
 
@@ -33,12 +34,12 @@ export const OnRampTransactions = ({
   }
   return (
     <CardTransfer title="Recent Transactions">
-      <div className="pt-2">
+      <div className="pt-2 flex flex-col gap-2">
         {transactions.map((transaction) => (
           <div className="flex justify-between">
             <div>
               <div className="text-sm">Received INR</div>
-              <div className="text-slate-600 text-xs flex gap-2">
+              <div className="text-slate-600 text-xs flex gap-2 items-center">
                 <span>{transaction.time.toDateString()}</span>
                 <TransactionStatusText TransactionStatus={transaction.status} />
               </div>

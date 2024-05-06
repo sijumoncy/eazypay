@@ -25,6 +25,7 @@ const config: Pick<Config, "presets"> = {
             bgClr: "var(--bgClr)",
             danger: "var(--danger)",
             success: "var(--success)",
+            warning:"var(--warning)",
             heading: "#193b62",
             dark: "#141414",
             muted: {
