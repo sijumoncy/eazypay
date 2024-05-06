@@ -3,12 +3,14 @@ import db from "@repo/db/client";
 
 const app = express();
 
+app.use(express.json())
+
 app.post("/hdfcWebhook", async (req, res) => {
   //TODO: Add zod validation here?
   // TODO : Check the request exactly come from HDFC , by checking secret
   const paymentInformation = {
     token: req.body.token,
-    userId: req.body.user_identifier,
+    userId: req.body.user_id,
     amount: req.body.amount,
   };
 
@@ -62,3 +64,5 @@ app.post("/hdfcWebhook", async (req, res) => {
     });
   }
 });
+
+app.listen(8003)
