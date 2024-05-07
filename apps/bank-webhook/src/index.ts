@@ -1,9 +1,17 @@
 import express from "express";
 import db from "@repo/db/client";
+import * as path from 'path';
 
 const app = express();
 
 app.use(express.json())
+const BASE_TEMPLATE_PATH = path.join(__dirname, 'template')
+app.use(express.static( __dirname + '/template' ));
+
+
+app.get("/hdfcWebhook", async (req, res) => {
+  res.sendFile(path.join(BASE_TEMPLATE_PATH, 'hdfc', 'index.html' ));
+})
 
 app.post("/hdfcWebhook", async (req, res) => {
   //TODO: Add zod validation here?
