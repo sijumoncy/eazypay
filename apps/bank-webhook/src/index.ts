@@ -8,8 +8,8 @@ app.use(express.json())
 const BASE_TEMPLATE_PATH = path.join(__dirname, 'template')
 app.use(express.static( __dirname + '/template' ));
 
-
-app.get("/hdfcWebhook", async (req, res) => {
+// simulation bankwebhook endpoint
+app.get("/", async (req, res) => {
   res.sendFile(path.join(BASE_TEMPLATE_PATH, 'hdfc', 'index.html' ));
 })
 

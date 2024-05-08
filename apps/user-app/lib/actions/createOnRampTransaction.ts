@@ -11,7 +11,15 @@ import prisma from "@repo/db/client";
 export async function createOnRampTransaction(
   amount: number,
   provider: string
-) {
+): Promise<
+  | {
+      message: string;
+      userId?: number;
+      amount?: number;
+      token?: string;
+    }
+  | undefined
+> {
   //get requested user
   const session = await getServerSession(authOptions);
   const userId = session.user.id;
@@ -27,14 +35,28 @@ export async function createOnRampTransaction(
     };
   }
 
-  await prisma.onRampTransaction.create({
-    data: {
-      userId: Number(userId),
-      amount: amount * 100,
-      status: "Processing",
-      startTime: new Date(),
-      provider: provider,
-      token: token,
-    },
-  });
+  await prisma.onRampTransaction
+    .create({
+      data: {
+        userId: Number(userId),
+        amount: amount * 100,
+        status: "Processing",
+        startTime: new Date(),
+        provider: provider,
+        token: token,
+      },
+    })
+    .then(() => {
+      return {
+        message: "payment process initiated",
+        userId: userId,
+        amount: amount * 100,
+        token: token,
+      };
+    })
+    .catch((e) => {
+      return {
+        message: `error : ${e}`,
+      };
+    });
 }

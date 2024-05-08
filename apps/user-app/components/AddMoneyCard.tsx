@@ -9,11 +9,13 @@ import { createOnRampTransaction } from "../lib/actions/createOnRampTransaction"
 const SUPPORTED_BANKS = [
   {
     name: "HDFC Bank",
-    redirectUrl: "https://netbanking.hdfcbank.com",
+    // redirectUrl: "https://netbanking.hdfcbank.com",
+    redirectUrl: "http://localhost:8003",
   },
   {
     name: "Axis Bank",
-    redirectUrl: "https://www.axisbank.com/",
+    // redirectUrl: "https://www.axisbank.com/",
+    redirectUrl: "http://localhost:8003",
   },
 ];
 
@@ -26,8 +28,20 @@ export const AddMoney = () => {
 
   const handleAddMoney = async () => {
     //call server action
-    await createOnRampTransaction(Number(amount), provider);
-    window.location.href = redirectUrl || "";
+    const onRampInitedResp = await createOnRampTransaction(
+      Number(amount),
+      provider
+    );
+    console.log({ onRampInitedResp });
+    if (onRampInitedResp && onRampInitedResp.token) {
+      const { amount, token, userId } = onRampInitedResp;
+      window.location.href = `${redirectUrl}?userId=${userId}&token=${token}&amount=${amount}`;
+    } else {
+      console.log(
+        "Failed to init onRamp Transaction : ",
+        onRampInitedResp?.message
+      );
+    }
   };
 
   return (
@@ -58,7 +72,9 @@ export const AddMoney = () => {
           }))}
         />
         <div className="flex justify-center pt-4">
-          <Button variant={"default"} onClick={() => handleAddMoney()}>Add Money</Button>
+          <Button variant={"default"} onClick={() => handleAddMoney()}>
+            Add Money
+          </Button>
         </div>
       </div>
     </CardTransfer>
