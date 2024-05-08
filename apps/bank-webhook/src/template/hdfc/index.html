@@ -1,12 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HDFC</title>
     <link rel="stylesheet" href="hdfc/index.css" />
-</head>
-<body>
-    Welcome To HDFC Bank
-</body>
+  </head>
+  <body>
+    <section>
+      <!-- header -->
+      <header class="header">
+        <h1 class="title">Welcome to NetBanking</h1>
+      </header>
+      <!-- content -->
+      <main class="main">
+        <div class="wrapper">
+          <div class="head">
+            <h3>Simulate NetBanking</h3>
+            <p>
+              This is a simple interface to simulate the result of netbanking
+              process done by you.You can simulate success and failure of bank
+              amount processing here.
+            </p>
+          </div>
+          <div class="content">
+            <button id="successbtn" class="btn success">Transaction Success</button>
+            <button id="failurebtn" class="btn failure">Transaction Failure</button>
+          </div>
+        </div>
+      </main>
+      <!-- footer -->
+      <footer class="footer">
+        <p>copyright @ NetBanking Simulation</p>
+        <p>Terms and Conditions</p>
+        <p>Privacy Policy</p>
+      </footer>
+    </section>
+    <script src="hdfc/index.js"></script>
+  </body>
 </html>

@@ -1,7 +1,78 @@
 :root {
     --bgClr: #f6f6f6;
+    --success : #68E365;
+  --danger : #F72B50;
 }
 
 body {
     background-color: var(--bgClr);
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2px;
+    justify-content: center;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    background-color: rgb(226, 224, 224);
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    min-height: 60vh;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.main .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main .wrapper .head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main .wrapper .content {
+    max-width: 60vw;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn.success {
+    background-color: var(--success)
+}
+.btn:hover {
+    opacity: 80;
+    color: #f6f6f6;
+}
+
+.btn.failure {
+    background-color: var(--danger)
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #035297;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    color: var(--bgClr);
 }
