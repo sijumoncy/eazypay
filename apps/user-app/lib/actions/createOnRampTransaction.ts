@@ -35,8 +35,8 @@ export async function createOnRampTransaction(
     };
   }
 
-  await prisma.onRampTransaction
-    .create({
+  try {
+    await prisma.onRampTransaction.create({
       data: {
         userId: Number(userId),
         amount: amount * 100,
@@ -45,18 +45,19 @@ export async function createOnRampTransaction(
         provider: provider,
         token: token,
       },
-    })
-    .then(() => {
-      return {
-        message: "payment process initiated",
-        userId: userId,
-        amount: amount * 100,
-        token: token,
-      };
-    })
-    .catch((e) => {
-      return {
-        message: `error : ${e}`,
-      };
     });
+
+    console.log("created then ==============");
+
+    return {
+      message: "payment process initiated",
+      userId: userId,
+      amount: amount * 100,
+      token: token,
+    };
+  } catch (err) {
+    return {
+      message: `error : ${err}`,
+    };
+  }
 }

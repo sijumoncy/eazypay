@@ -8,7 +8,7 @@ app.use(express.json());
 const BASE_TEMPLATE_PATH = path.join(__dirname, "template");
 app.use(express.static(__dirname + "/template"));
 
-// simulation bankwebhook endpoint
+// simulation bankwebhook endpoint ( this is actually provided or handled by original bank : now this is for demo / simulate)
 app.get("/", async (req, res) => {
   res.sendFile(path.join(BASE_TEMPLATE_PATH, "hdfc", "index.html"));
 });
@@ -32,7 +32,7 @@ app.post("/bankWebhook", async (req, res) => {
     const inProcessTransaction = await db.onRampTransaction.findFirst({
       where: {
         token: paymentInformation.token,
-        userId: paymentInformation.userId,
+        userId: Number(paymentInformation.userId),
         status: "Processing",
       },
     });
@@ -43,30 +43,40 @@ app.post("/bankWebhook", async (req, res) => {
       });
     }
 
-    await db.$transaction([
-      // update the balance
-      db.balance.updateMany({
-        where: {
-          userId: Number(paymentInformation.userId),
-        },
-        data: {
-          amount: {
-            increment: Number(paymentInformation.amount),
+    if (paymentInformation.status === "success") {
+      await db.$transaction([
+        // update the balance
+        db.balance.updateMany({
+          where: {
+            userId: Number(paymentInformation.userId),
           },
-        },
-      }),
+          data: {
+            amount: {
+              increment: Number(paymentInformation.amount),
+            },
+          },
+        }),
 
-      // update the transaction status
-      db.onRampTransaction.updateMany({
+        db.onRampTransaction.update({
+          where: {
+            token: paymentInformation.token,
+          },
+          data: {
+            status: "Success",
+          },
+        }),
+      ]);
+    } else {
+      // mark the onRamp transaction to failure
+      await db.onRampTransaction.updateMany({
         where: {
           token: paymentInformation.token,
         },
         data: {
-          status:
-            paymentInformation.status === "success" ? "Success" : "Failure",
+          status: "Failure",
         },
-      }),
-    ]);
+      });
+    }
 
     res.status(200).json({
       message: "Captured",

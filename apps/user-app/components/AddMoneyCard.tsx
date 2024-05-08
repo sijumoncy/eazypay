@@ -35,7 +35,7 @@ export const AddMoney = () => {
     console.log({ onRampInitedResp });
     if (onRampInitedResp && onRampInitedResp.token) {
       const { amount, token, userId } = onRampInitedResp;
-      window.location.href = `${redirectUrl}?userId=${userId}&token=${token}&amount=${amount}`;
+      window.location.href = `${redirectUrl}?userId=${userId}&token=${token}&amount=${amount}&redirectUrl=http://localhost:3000/transfer`;
     } else {
       console.log(
         "Failed to init onRamp Transaction : ",
