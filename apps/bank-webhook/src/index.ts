@@ -1,25 +1,30 @@
 import express from "express";
 import db from "@repo/db/client";
-import * as path from 'path';
+import * as path from "path";
 
 const app = express();
 
-app.use(express.json())
-const BASE_TEMPLATE_PATH = path.join(__dirname, 'template')
-app.use(express.static( __dirname + '/template' ));
+app.use(express.json());
+const BASE_TEMPLATE_PATH = path.join(__dirname, "template");
+app.use(express.static(__dirname + "/template"));
 
 // simulation bankwebhook endpoint
 app.get("/", async (req, res) => {
-  res.sendFile(path.join(BASE_TEMPLATE_PATH, 'hdfc', 'index.html' ));
-})
+  res.sendFile(path.join(BASE_TEMPLATE_PATH, "hdfc", "index.html"));
+});
 
-app.post("/hdfcWebhook", async (req, res) => {
+/**
+ * Currently using same /bankWebhook for all banks to simulate
+ * this will be replace with multiple bank web hooks endpoints like /hdfcWebhook
+ */
+app.post("/bankWebhook", async (req, res) => {
   //TODO: Add zod validation here?
   // TODO : Check the request exactly come from HDFC , by checking secret
   const paymentInformation = {
     token: req.body.token,
     userId: req.body.user_id,
     amount: req.body.amount,
+    status: req.body.status,
   };
 
   try {
@@ -33,9 +38,9 @@ app.post("/hdfcWebhook", async (req, res) => {
     });
 
     if (!inProcessTransaction) {
-      return {
+      res.status(409).json({
         message: "Invalid request.No transaction is initiated for the request",
-      };
+      });
     }
 
     await db.$transaction([
@@ -57,7 +62,8 @@ app.post("/hdfcWebhook", async (req, res) => {
           token: paymentInformation.token,
         },
         data: {
-          status: "Success",
+          status:
+            paymentInformation.status === "success" ? "Success" : "Failure",
         },
       }),
     ]);
@@ -73,4 +79,4 @@ app.post("/hdfcWebhook", async (req, res) => {
   }
 });
 
-app.listen(8003)
+app.listen(8003);
