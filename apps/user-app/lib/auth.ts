@@ -70,8 +70,12 @@ export const authOptions = {
       },
     }),
   ],
-  secret: process.env.JWT_SECRET || "secret",
+  secret: process.env.NEXTAUTH_SECRET || "secret",
+  
   callbacks: {
+    async jwt({ token }: any) {
+      return token;
+    },
     // TODO: fix the type here? instead of Using any
     async session({ token, session }: any) {
       session.user.id = token.sub;

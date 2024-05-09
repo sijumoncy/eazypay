@@ -7,9 +7,7 @@ export async function p2pTransfer(toUserNumber: string, amount: number) {
   const session = await getServerSession(authOptions);
   const fromUserId = session?.user?.id;
   if (!fromUserId) {
-    return {
-      message: "Error while sending. Try again.",
-    };
+    throw new Error("Error while sending. Try again.");
   }
   // check the toUser is exist
   const toUser = await prisma.user.findFirst({
@@ -19,48 +17,47 @@ export async function p2pTransfer(toUserNumber: string, amount: number) {
   });
 
   if (!toUser) {
-    return {
-      message: "User not found",
-    };
+    throw new Error("User not found");
   }
 
-  await prisma.$transaction(async (tx) => {
-    // need to hanlde : block simultanoius parallel interaction with db
-    // only allow one interaction. so wait other request trying access same row in db
-    // raw sql because prisma not support lock out of the box
-    // there are multi type lock => read write , write lock
-    await tx.$queryRaw`SELECT * FROM "Balance" WHERE "userId" = ${Number(fromUserId)} FOR UPDATE`;
+  try {
+    await prisma.$transaction(async (tx) => {
+      // need to hanlde : block simultanoius parallel interaction with db
+      // only allow one interaction. so wait other request trying access same row in db
+      // raw sql because prisma not support lock out of the box
+      // there are multi type lock => read write , write lock
+      await tx.$queryRaw`SELECT * FROM "Balance" WHERE "userId" = ${Number(fromUserId)} FOR UPDATE`;
 
-    const fromBalance = await tx.balance.findUnique({
-      where: { userId: Number(fromUserId) },
+      const fromBalance = await tx.balance.findUnique({
+        where: { userId: Number(fromUserId) },
+      });
+      if (!fromBalance || fromBalance.amount < amount) {
+        throw new Error("Insufficient funds");
+      }
+
+      await tx.balance.update({
+        where: { userId: Number(fromUserId) },
+        data: { amount: { decrement: amount } },
+      });
+
+      await tx.balance.update({
+        where: { userId: toUser.id },
+        data: { amount: { increment: amount } },
+      });
+
+      await tx.p2pTransfer.create({
+        data: {
+          fromUserId: Number(fromUserId),
+          toUserId: toUser.id,
+          amount: amount,
+          timestamp: new Date(),
+        },
+      });
     });
-    if (!fromBalance || fromBalance.amount < amount) {
-      return {
-        message: "Insufficient funds",
-      };
-    }
-
-    await tx.balance.update({
-      where: { userId: Number(fromUserId) },
-      data: { amount: { decrement: amount } },
-    });
-
-    await tx.balance.update({
-      where: { userId: toUser.id },
-      data: { amount: { increment: amount } },
-    });
-
-    await tx.p2pTransfer.create({
-      data: {
-        fromUserId: Number(fromUserId),
-        toUserId: toUser.id,
-        amount: amount,
-        timestamp: new Date(),
-      },
-    });
-
     return {
       message: "success",
     };
-  });
+  } catch (err: any) {
+    throw new Error(err?.message || err);
+  }
 }

@@ -9,9 +9,20 @@ import { p2pTransfer } from "../lib/actions/p2ptransfer";
 export function SendMoney() {
   const [number, setNumber] = useState("");
   const [amount, setAmount] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSendMoney = async () => {
-    await p2pTransfer(number, Number(amount) * 100);
+    try {
+      setLoading(true);
+      const response = await p2pTransfer(number, Number(amount) * 100);
+      console.log({ response });
+      setNumber("");
+      setAmount("");
+    } catch (err) {
+      console.error("Send MOney Error : ", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -36,7 +47,9 @@ export function SendMoney() {
               }}
             />
             <div className="pt-4 flex justify-center">
-              <Button variant={"default"} onClick={() => handleSendMoney()}>PAY</Button>
+              <Button variant={"default"} onClick={() => handleSendMoney()}>
+                {loading ? "SENDING" : "PAY"}
+              </Button>
             </div>
           </div>
         </CardTransfer>
