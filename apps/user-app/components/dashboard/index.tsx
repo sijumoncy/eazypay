@@ -5,19 +5,38 @@ import StatusCard from "@repo/ui/statuscard";
 import { DataTable } from "@repo/ui/datatable";
 import { employeeColumns } from "./column";
 import { Texts } from "@repo/ui/texts";
+import { getCurrentUserTransferAndOnRamp } from "../../lib/actions/p2ptransfer";
 
-const statusDummyData = [
-  {
+const statusData = {
+  total: {
     id: 1,
     title: "Total Transfer",
-    content: "1000",
+    content: 0,
     subContent: "",
-    className:"bg-primary text-bgClr"
+    className: "bg-primary text-bgClr",
   },
-  { id: 2, title: "Total Success", content: "800", subContent: "", className:"bg-[var(--success)] text-bgClr" },
-  { id: 3, title: "Total Failed", content: "198", subContent: "", className:"bg-[var(--danger)] text-bgClr" },
-  { id: 4, title: "Total Pending", content: "2", subContent: "", className:"bg-[var(--warning)] text-bgClr" },
-];
+  success: {
+    id: 2,
+    title: "Total Success",
+    content: 0,
+    subContent: "",
+    className: "bg-[var(--success)] text-bgClr",
+  },
+  failed: {
+    id: 3,
+    title: "Total Failed",
+    content: 0,
+    subContent: "",
+    className: "bg-[var(--danger)] text-bgClr",
+  },
+  pending: {
+    id: 4,
+    title: "Total Pending",
+    content: 0,
+    subContent: "",
+    className: "bg-[var(--warning)] text-bgClr",
+  },
+};
 
 const tableDummyData = [
   {
@@ -118,19 +137,47 @@ const tableDummyData = [
   },
 ];
 
-function DashBoard() {
+async function DashBoard() {
+  try {
+    const data = await getCurrentUserTransferAndOnRamp();
+    // total
+    statusData.total.content =
+      statusData.total.content + data.p2pTransactions.length;
+    // success
+    statusData.success.content =
+      data.p2pTransactions.length +
+      data.onRampTransactions.reduce(
+        (prev, data) => (data.status === "Success" ? 1 : 0),
+        0
+      );
+    statusData.pending.content =
+      statusData.pending.content +
+      data.onRampTransactions.reduce(
+        (prev, data) => (data.status === "Processing" ? 1 : 0),
+        0
+      );
+    statusData.failed.content =
+      statusData.failed.content +
+      data.onRampTransactions.reduce(
+        (prev, data) => (data.status === "Failure" ? 1 : 0),
+        0
+      );
+  } catch (err) {
+    console.log("Error : ", err);
+  }
+
   return (
     <div className="pt-5 flex flex-col gap-5">
       {/* quick statics */}
       <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
-        {statusDummyData.map((item) => (
+        {Object.entries(statusData).map(([key, data]) => (
           <div className="">
             <StatusCard
-              key={item.id}
-              Content={item.content}
-              title={item.title}
-              subContent={item.subContent}
-              className={item.className}
+              key={data.id}
+              Content={data.content.toString()}
+              title={data.title}
+              subContent={data.subContent}
+              className={data.className}
             />
           </div>
         ))}
@@ -139,7 +186,12 @@ function DashBoard() {
       {/* overview wallet*/}
       <div className="grid grid-cols-1 gap-2 ">
         <Box className="max-w-[500px] w-full h-full shadow-box relative flex justify-center ">
-          <CreditCard balance={123456} accHolder="Alice" className="border-2 border-green-500" joinedOn="01/24"/>
+          <CreditCard
+            balance={123456}
+            accHolder="Alice"
+            className="border-2 border-green-500"
+            joinedOn="01/24"
+          />
         </Box>
       </div>
 
@@ -147,8 +199,10 @@ function DashBoard() {
       <div className="w-full min-h-14 pb-4">
         <Box className="w-full h-full shadow-box border mx-auto">
           <div className="py-2 flex flex-col gap-1">
-            <Texts variant={"cardHead"} >Recent Transactions</Texts>
-            <Texts colors={"muted"}>Quick view of recent transactions details</Texts>
+            <Texts variant={"cardHead"}>Recent Transactions</Texts>
+            <Texts colors={"muted"}>
+              Quick view of recent transactions details
+            </Texts>
           </div>
           {/* the column data need to changed with actual data later */}
           <DataTable data={tableDummyData} columns={employeeColumns} />
