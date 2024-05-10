@@ -61,3 +61,33 @@ export async function p2pTransfer(toUserNumber: string, amount: number) {
     throw new Error(err?.message || err);
   }
 }
+
+/**
+ * Function to get all from and to transaction of a current
+ */
+export async function getCurrentUserTransferAndOnRamp() {
+  const session = await getServerSession(authOptions);
+  const currentUserId = session?.user?.id;
+  if (!currentUserId) {
+    throw new Error("Error while sending. Try again.");
+  }
+  try {
+    const p2pTransactions = await prisma.p2pTransfer.findMany({
+      where: {
+        OR: [
+          { fromUserId: Number(currentUserId) },
+          { toUserId: Number(currentUserId) },
+        ],
+      },
+    });
+
+    const onRampTransactions = await prisma.onRampTransaction.findMany({
+      where: {
+        userId: Number(currentUserId),
+      },
+    });
+    return {p2pTransactions, onRampTransactions};
+  } catch (err: any) {
+    throw new Error(err?.message || err);
+  }
+}
