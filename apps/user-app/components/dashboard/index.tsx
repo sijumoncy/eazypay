@@ -140,28 +140,33 @@ const tableDummyData = [
 async function DashBoard() {
   try {
     const data = await getCurrentUserTransferAndOnRamp();
-    // total
-    statusData.total.content =
-      statusData.total.content + data.p2pTransactions.length;
-    // success
-    statusData.success.content =
-      data.p2pTransactions.length +
-      data.onRampTransactions.reduce(
-        (prev, data) => (data.status === "Success" ? 1 : 0),
+
+    if (data) {
+      // total
+      statusData.total.content =
+        data.p2pTransactions.length + data.onRampTransactions.length;
+
+      // success
+      const onRampSuccess = data.onRampTransactions.reduce(
+        (acc, item) => (item.status === "Success" ? acc + 1 : acc + 0),
         0
       );
-    statusData.pending.content =
-      statusData.pending.content +
-      data.onRampTransactions.reduce(
-        (prev, data) => (data.status === "Processing" ? 1 : 0),
+      statusData.success.content = data.p2pTransactions.length + onRampSuccess;
+
+      // pending
+      const onRampPending = data.onRampTransactions.reduce(
+        (acc, item) => (item.status === "Processing" ? acc + 1 : acc + 0),
         0
       );
-    statusData.failed.content =
-      statusData.failed.content +
-      data.onRampTransactions.reduce(
-        (prev, data) => (data.status === "Failure" ? 1 : 0),
+      statusData.pending.content = onRampPending;
+
+      // failed
+      const onRampFailed = data.onRampTransactions.reduce(
+        (acc, item) => (item.status === "Failure" ? acc + 1 : acc + 0),
         0
       );
+      statusData.failed.content = onRampFailed;
+    }
   } catch (err) {
     console.log("Error : ", err);
   }
