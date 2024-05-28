@@ -6,6 +6,7 @@ import { DataTable } from "@repo/ui/datatable";
 import { employeeColumns } from "./column";
 import { Texts } from "@repo/ui/texts";
 import { getCurrentUserTransferAndOnRamp } from "../../lib/actions/p2ptransfer";
+import { getSessionUserData } from "../../lib/actions/getSessionUserData";
 
 const statusData = {
   total: {
@@ -138,6 +139,9 @@ const tableDummyData = [
 ];
 
 async function DashBoard() {
+  
+  let userData = null;
+
   try {
     const data = await getCurrentUserTransferAndOnRamp();
 
@@ -167,6 +171,13 @@ async function DashBoard() {
       );
       statusData.failed.content = onRampFailed;
     }
+
+    // get user data
+    userData = await getSessionUserData()
+
+    console.log("userData =====> ", userData, userData?.Balance[0]?.amount.toFixed(2));
+
+
   } catch (err) {
     console.log("Error : ", err);
   }
@@ -192,8 +203,8 @@ async function DashBoard() {
       <div className="grid grid-cols-1 gap-2 ">
         <Box className="max-w-[500px] w-full h-full shadow-box relative flex justify-center ">
           <CreditCard
-            balance={123456}
-            accHolder="Alice"
+            balance={userData?.Balance[0]?.amount || 0}
+            accHolder={userData?.name?.toUpperCase() || ""}
             className="border-2 border-green-500"
             joinedOn="01/24"
           />

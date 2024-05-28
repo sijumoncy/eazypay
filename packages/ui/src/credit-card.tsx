@@ -5,14 +5,6 @@ interface ICreditCardProps {
   joinedOn: string;
 }
 
-{
-  /* <div classNameName={cn(classNameName, "aspect-[4/2.2] rounded-lg p-4")}>
-<p>{`$ ${balance}`}</p>
-<p>Wallet Balance</p>
-<p>{accHolder}</p>
-</div> */
-}
-
 function CreditCard({
   balance,
   accHolder,
